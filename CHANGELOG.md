@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `evcc-native/`: driver tested against a real charger (2 of 2 runs: start, regulation at 6, 8 and 10 A, stop in 0.3 s). Results in `evcc-native/README.md`.
+
 ## 1.0.0 — 2026-11-11
 
 First public release.
