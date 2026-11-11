@@ -1,0 +1,21 @@
+# /etc/policharger.conf — settings for policharger.py
+[policharger]
+
+# RS485 to Modbus TCP gateway (Modbus TCP server mode)
+host = 192.168.1.100
+port = 502
+
+# Modbus slave ID set in the charger menu
+slave = 1
+
+# Highest current accepted from evcc, in A (6–32). Set it to what your installation allows.
+# Keep evcc's loadpoint maxCurrent at or below this value.
+max_current = 16
+
+# Used to estimate power from the measured current
+voltage = 230
+phases = 1
+
+# Local state and lock files; must be writable by the user evcc runs as
+state_file = /tmp/policharger.json
+lock_file = /tmp/policharger.lock

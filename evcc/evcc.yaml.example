@@ -1,0 +1,47 @@
+# evcc.yaml fragment for policharger.py
+# Add these blocks to your existing configuration; keep your own site, vehicle and grid meter.
+
+meters:
+  - name: charge
+    type: custom
+    power:
+      source: script
+      cmd: python3 /usr/local/bin/policharger.py power
+      timeout: 15s
+    currents:
+      - source: script
+        cmd: python3 /usr/local/bin/policharger.py current
+        timeout: 15s
+      - source: const       # single-phase: L2 and L3 are always 0
+        value: 0
+      - source: const
+        value: 0
+
+chargers:
+  - name: policharger
+    type: custom
+    status:
+      source: script
+      cmd: python3 /usr/local/bin/policharger.py status
+      timeout: 15s
+    enabled:
+      source: script
+      cmd: python3 /usr/local/bin/policharger.py enabled
+      timeout: 15s
+    enable:
+      source: script
+      cmd: python3 /usr/local/bin/policharger.py enable ${enable}
+      timeout: 30s          # writes may need retries
+    maxcurrent:
+      source: script
+      cmd: python3 /usr/local/bin/policharger.py maxcurrent ${maxcurrent}
+      timeout: 30s
+
+loadpoints:
+  - title: Garage
+    charger: policharger
+    meter: charge
+    # circuit: main        # recommended: a circuit with your grid meter and contracted power
+
+# Set the loadpoint's minimum current (6 A), maximum current (at or below max_current in
+# /etc/policharger.conf) and phases in the evcc UI: recent evcc releases ignore these YAML keys.
