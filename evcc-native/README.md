@@ -1,6 +1,6 @@
 # Native evcc driver (work in progress)
 
-A Go implementation of the same control strategy as `policharger.py`, written as an evcc charger (`type: policharger`) so it can eventually be contributed upstream. **It is not part of evcc yet.** It has been tested against one real charger through a small harness built on evcc's Modbus layer, but not yet inside a full evcc build. For production use, keep using the script.
+A Go implementation of the same control strategy as `policharger.py`, written as an evcc charger (`type: policharger`) so it can eventually be contributed upstream. **It is not part of evcc yet.** It has been tested against one real charger, first through a small harness built on evcc's Modbus layer and since 11 November 2026 in daily use inside a full evcc 0.319.0 build. For production use, keep using the script.
 
 | File | Goes to (in an evcc checkout) |
 | --- | --- |
@@ -8,7 +8,7 @@ A Go implementation of the same control strategy as `policharger.py`, written as
 | `charger/policharger_test.go` | `charger/policharger_test.go` |
 | `templates/definition/charger/policharger.yaml` | `templates/definition/charger/policharger.yaml` |
 
-Written against evcc commit `1ca89f2` (10 November 2026).
+Written against evcc commit `cc2eec2` (12 November 2026). Upstream proposal: [evcc-io/evcc#36127](https://github.com/evcc-io/evcc/issues/36127).
 
 ## What it does
 
@@ -28,8 +28,8 @@ Written against evcc commit `1ca89f2` (10 November 2026).
 | evcc template test | Passing |
 | Gateway check: the tested gateway now echoes the Modbus TCP transaction ID, so evcc's standard client can use it | Done |
 | Test against a real charger (harness on evcc's `util/modbus`, see below) | Passing, 2 of 2 runs |
-| Test inside a full evcc build | Pending |
-| Discussion with the evcc maintainers | Pending |
+| Test inside a full evcc build (0.319.0), in daily use since 11 November 2026 | Running |
+| Feature request [#36127](https://github.com/evcc-io/evcc/issues/36127) | Open |
 | Pull request to evcc-io/evcc | Pending |
 
 ## Hardware test
